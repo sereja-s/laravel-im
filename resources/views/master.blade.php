@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Page Cart</title>
+	<title>@yield('title')</title>
 
 	<!-- Bootstrap Cdn link  -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
@@ -18,7 +18,7 @@
 
 	<!-- Custom css link -->
 	<link rel="stylesheet" href="/css/style.css" />
-	<link rel="stylesheet" href="css/responsive-style.css" />
+	<link rel="stylesheet" href="/css/responsive-style.css" />
 </head>
 
 <body>
@@ -42,9 +42,9 @@
 				</div>
 				<div class="header-center d-lg-flex d-none">
 					<ul class="d-flex gap-4">
-						<li class="nav-item"><a href="#0" class="nav-link">Home</a></li>
+						<li class="nav-item"><a href="{{ route('index') }}" class="nav-link">Home</a></li>
 						<li class="nav-item mega">
-							<a href="#0" class="nav-link">Product
+							<a href="{{ route('products') }}" class="nav-link">Products
 								<i class="ri-arrow-down-s-line rotate"></i>
 							</a>
 							<div class="mega-content">
@@ -143,9 +143,9 @@
 										<div class="col-2 ps-5">
 											<h6>Apprel</h6>
 											<ul class="sub-link">
-												<li class="nav-item"><a href="#0" class="nav-link">Prada</a></li>
-												<li class="nav-item"><a href="#0" class="nav-link">Gucci</a></li>
-												<li class="nav-item"><a href="#0" class="nav-link">Chanel</a></li>
+												<li class="nav-item"><a href="/prada" class="nav-link">Prada</a></li>
+												<li class="nav-item"><a href="/gucci" class="nav-link">Gucci</a></li>
+												<li class="nav-item"><a href="/chanel" class=" nav-link">Chanel</a></li>
 												<li class="nav-item"><a href="#0" class="nav-link">Ganni</a></li>
 												<li class="nav-item"><a href="#0" class="nav-link">Zara</a></li>
 											</ul>
@@ -179,7 +179,7 @@
 					</ul>
 					<ul class="d-flex gap-4">
 						<li class="nav-item position-relative sub">
-							<a href="#0" class="nav-link">Specials
+							<a href="{{ route('categories') }}" class="nav-link">Specials
 								<i class="ri-arrow-down-s-line rotate"></i>
 							</a>
 							<div class="sub-menu">
@@ -201,9 +201,9 @@
 							<a href="#0" class="nav-link search-trigger"><i class="ri-search-line"></i></a>
 						</li>
 						<li class="nav-item">
-							<a href="#0" class="nav-link position-relative cart-trigger">
+							<a href="{{ route('basket') }}" class="nav-link position-relative">
 								<i class="ri-shopping-bag-line"></i>
-								<span class="item-flotaing position-absolute"><span>3</span></span>
+								<span class="item-flotaing position-absolute"><span>0</span></span>
 							</a>
 						</li>
 					</ul>
@@ -213,160 +213,32 @@
 	</header>
 	<!-- Main Section Start here -->
 	<main>
-		<!-- Breadcrumb Section Start Here -->
+
+		@if(!isset($file))
+
 		<section class="breadcrumb-section">
 			<div class="container">
 				<div class="breadcrumb-wrapper">
 					<ul class="">
 						<li><a href="#0">Home</a></li>
+						<li><a href="#0">Product</a></li>
 						<li>
-							<a href="#0"><span>Cart</span></a>
+							<a href="#0"><span>Sweater</span></a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</section>
 
-		<!-- heading section Start here -->
-		<section class="section-heading my-5">
-			<section class="container">
-				<div class="row">
-					<div class="col-12">
-						<h3 class="text-center">Cart</h3>
-					</div>
-				</div>
-			</section>
-		</section>
+		@endif
 
-		<!-- Cart Section Start Here -->
-		<section class="cart-page">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-sm-12 p-0">
-						<div class="details">
-							<div class="item d-flex align-items-center justify-content-between flex-wrap">
-								<div class="cart-img mb-3 mb-sm-0">
-									<img src="/images/product_01.jpg" alt="" />
-								</div>
-								<div class="cart-details">
-									<h6 class="mb-0">The Sweater in Tosca</h6>
-									<p class="mb-0">Color: Tosca</p>
-									<p class="mb-0">Size: L</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 p-0">
-						<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
-							<div class="inc-dec">
-								<button>-</button>
-								<input type="text" value="1" class="text-center" />
-								<button>+</button>
-							</div>
-							<div class="">
-								<p class="price mb-0">$45.00</p>
-							</div>
-							<div class="delete-button">
-								<a href="#0"><i class="ri-close-line"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 p-0">
-						<div class="details">
-							<div class="item d-flex align-items-center justify-content-between flex-wrap">
-								<div class="cart-img mb-3 mb-sm-0">
-									<img src="/images/product_07.jpg" alt="" />
-								</div>
-								<div class="cart-details">
-									<h6 class="mb-0">The Sweater in Tosca</h6>
-									<p class="mb-0">Color: Tosca</p>
-									<p class="mb-0">Size: L</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 p-0">
-						<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
-							<div class="inc-dec">
-								<button>-</button>
-								<input type="text" value="1" class="text-center" />
-								<button>+</button>
-							</div>
-							<div>
-								<p class="price mb-0">$45.00</p>
-							</div>
-							<div class="delete-button">
-								<a href="#0"><i class="ri-close-line"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 p-0">
-						<div class="details">
-							<div class="item d-flex align-items-center justify-content-between flex-wrap">
-								<div class="cart-img mb-3 mb-sm-0">
-									<img src="/images/product_08.jpg" alt="" />
-								</div>
-								<div class="cart-details">
-									<h6 class="mb-0">The Sweater in Tosca</h6>
-									<p class="mb-0">Color: Tosca</p>
-									<p class="mb-0">Size: L</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12 p-0">
-						<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
-							<div class="inc-dec">
-								<button>-</button>
-								<input type="text" value="1" class="text-center" />
-								<button>+</button>
-							</div>
-							<div>
-								<p class="price mb-0">$45.00</p>
-							</div>
-							<div class="delete-button">
-								<a href="#0"><i class="ri-close-line"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+		@yield('content')
 
-		<section class="cart-subtotal-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-12 mb-4 mb-md-0">
-						<div class="add-note">
-							<textarea name="" id="" rows="6" class="form-control" placeholder="Additional Note+"></textarea>
-						</div>
-					</div>
-					<div class="col-md-6 col-12">
-						<div class="subtotal-confirm ps-0 ps-md-4">
-							<div class="mb-3">
-								<span>Subtotal</span>
-								<span class="ms-4">$147.00</span>
-							</div>
-							<div class="subtotal-section mb-5">
-								<ul class="">
-									<li>
-										<input type="radio" id="account" /> <label for="account">I agree to <a href="#0"
-												class="gary-color">terms & condition</a></label>
-									</li>
-								</ul>
-							</div>
-							<div class="button">
-								<a href="#0" class="checkout-btn">Checkout</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
 	</main>
 
+	@yield('section-page')
 
-	<!--Footer Start here  -->
+	<!-- Footer section start Here -->
 	<footer>
 		<section class="footer-section">
 			<div class="container">
@@ -374,8 +246,7 @@
 					<div class="col-lg-6 col-12 mb-5 md-lg-0">
 						<div class="voucher">
 							<h3>Get voucher from us</h3>
-							<span>Enter your email below to be the first to know about new collections and product
-								lanches</span>
+							<span>Enter your email below to be the first to know about new collections and product lanches</span>
 							<form action="" class="footer-form">
 								<div class="email-icon"><i class="ri-mail-line"></i></div>
 								<input type="text" class="form-control" placeholder="Enter your Email" />
@@ -446,13 +317,13 @@
 		</section>
 	</footer>
 
+
 	<!-- Small Decive Navaigation menu -->
 	<section class="mobile-nav">
 		<ul class="mobile-link">
 			<li class="nav-item"><a href="#0" class="nav-link">Home</a></li>
 			<li class="nav-item nav-toggler">
-				<a href="#0" class="nav-link d-flex align-items-center">Product <span class="ms-auto"><i
-							class="ri-arrow-down-s-line rotate"></i></span></a>
+				<a href="#0" class="nav-link d-flex align-items-center">Product <span class="ms-auto"><i class="ri-arrow-down-s-line rotate"></i></span></a>
 				<ul class="mobile-sublink">
 					<li class="nav-item"><a href="#0" class="nav-link">Adidas</a></li>
 					<li class="nav-item"><a href="#0" class="nav-link">Chanel</a></li>
@@ -475,8 +346,7 @@
 				<a href="#0" class="nav-link">Discount</a>
 			</li>
 			<li class="nav-item nav-toggler">
-				<a href="#0" class="nav-link d-flex align-items-center">Special <span class="ms-auto"><i
-							class="ri-arrow-down-s-line rotate"></i></span></a>
+				<a href="#0" class="nav-link d-flex align-items-center">Special <span class="ms-auto"><i class="ri-arrow-down-s-line rotate"></i></span></a>
 				<ul class="mobile-sublink">
 					<li class="nav-item"><a href="#0" class="nav-link">Dolece & Gabbana</a></li>
 					<li class="nav-item"><a href="#0" class="nav-link">Louis Vuitton</a></li>
@@ -551,14 +421,14 @@
 		<div class="wrap">
 			<div class="data-content">
 				<a href="#0" class="close"><i class="ri-close-line"></i></a>
+
 				<div class="question-section">
 					<h3 class="text-center mb-4">The Question</h3>
 					<form action="">
 						<input type="text" class="form-control" placeholder="Name" />
 						<div></div>
 						<div><input type="email" class="form-control" placeholder="Email" /></div>
-						<div><textarea name="" id="" cols="30" rows="8" class="form-control"
-								placeholder="Your Question.."></textarea></div>
+						<div><textarea name="" id="" cols="30" rows="8" class="form-control" placeholder="Your Question.."></textarea></div>
 						<div class="buttom text-center mt-5">
 							<a href="#0" class="seconday-btn">Submit</a>
 						</div>
@@ -599,7 +469,7 @@
 								<label for="star1"><i class="ri-star-fill"></i></label>
 							</div>
 						</div>
-						<div class="mb-4">
+						<div class="mb-3">
 							<input type="text" class="form-control" placeholder="Review Title" />
 						</div>
 						<div class="mb-5">
@@ -615,12 +485,12 @@
 	</section>
 
 	<!-- Product cart Section Start Here -->
-
 	<section class="cart-section">
 		<div class="wrap">
 			<a href="#0" class="close-trigger"><i class="ri-close-line"></i></a>
 			<h3>Shopping Cart</h3>
 			<div class="cart-content">
+				<!-- Cart item 1 -->
 				<div class="cart-item mb-4 mt-4 d-flex">
 					<div class="inc-dec">
 						<button class="decrease">-</button>
@@ -638,6 +508,7 @@
 					</div>
 					<a href="#0" class="cancle"><i class="ri-close-line"></i></a>
 				</div>
+				<!-- Cart item 2 -->
 				<div class="cart-item mb-4 d-flex">
 					<div class="inc-dec">
 						<button class="decrease">-</button>
@@ -655,40 +526,42 @@
 					</div>
 					<a href="#0" class="cancle"><i class="ri-close-line"></i></a>
 				</div>
-				<!-- <div class="cart-item mb-4 d-flex">
-            <div class="inc-dec">
-              <button class="decrease">-</button>
-              <input type="text" value="1" />
-              <button class="increase">+</button>
-            </div>
-            <div class="cart-img">
-              <img src="/images/product_03.jpg" class="img-fluid" alt="" />
-            </div>
-            <div class="cart-details">
-              <h5>The Sweater in Tosca</h5>
-              <p class="color">Color: Tosca</p>
-              <p class="size">Size: L</p>
-              <p class="price">$45.00</p>
-            </div>
-            <a href="#0" class="cancle"><i class="ri-close-line"></i></a>
-          </div> -->
-				<!-- <div class="cart-item mb-4 d-flex">
-            <div class="inc-dec">
-              <button class="decrease">-</button>
-              <input type="text" value="1" />
-              <button class="increase">+</button>
-            </div>
-            <div class="cart-img">
-              <img src="/images/product_07.jpg" class="img-fluid" alt="" />
-            </div>
-            <div class="cart-details">
-              <h5>The Sweater in Tosca</h5>
-              <p class="color">Color: Tosca</p>
-              <p class="size">Size: L</p>
-              <p class="price">$45.00</p>
-            </div>
-            <a href="#0" class="cancle"><i class="ri-close-line"></i></a>
-          </div>  -->
+				<!-- Cart item 3 -->
+				<div class="cart-item mb-4 d-flex">
+					<div class="inc-dec">
+						<button class="decrease">-</button>
+						<input type="text" value="1" />
+						<button class="increase">+</button>
+					</div>
+					<div class="cart-img">
+						<img src="/images/product_03.jpg" class="img-fluid" alt="" />
+					</div>
+					<div class="cart-details">
+						<h5>The Sweater in Tosca</h5>
+						<p class="color">Color: Tosca</p>
+						<p class="size">Size: L</p>
+						<p class="price">$45.00</p>
+					</div>
+					<a href="#0" class="cancle"><i class="ri-close-line"></i></a>
+				</div>
+				<!-- Cart item 1 -->
+				<div class="cart-item mb-4 d-flex">
+					<div class="inc-dec">
+						<button class="decrease">-</button>
+						<input type="text" value="1" />
+						<button class="increase">+</button>
+					</div>
+					<div class="cart-img">
+						<img src="/images/product_07.jpg" class="img-fluid" alt="" />
+					</div>
+					<div class="cart-details">
+						<h5>The Sweater in Tosca</h5>
+						<p class="color">Color: Tosca</p>
+						<p class="size">Size: L</p>
+						<p class="price">$45.00</p>
+					</div>
+					<a href="#0" class="cancle"><i class="ri-close-line"></i></a>
+				</div>
 			</div>
 			<div class="coupon-section">
 				<input type="text" class="form-control" placeholder="Coupon" />
@@ -735,6 +608,7 @@
 		</div>
 	</section>
 
+
 	<!-- Overlay Section Start Here -->
 	<section class="overlay"></section>
 	<!-- Bootstrap js cdn link -->
@@ -746,7 +620,8 @@
 	<!-- Swiper js cdn link -->
 	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 	<!-- Custom js link -->
-	<script src="js/main.js"></script>
+	<script src="/js/main.js"></script>
+
 </body>
 
 </html>

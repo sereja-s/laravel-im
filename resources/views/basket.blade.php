@@ -1,191 +1,138 @@
 @extends('master')
 
-@section('title', 'Товар')
+@section('title', 'Корзина')
 
 @section('content')
 
-<!-- Single-Product Section Start Here -->
-<section class="single-product">
+<!-- heading section Start here -->
+<section class="section-heading my-5">
+	<section class="container">
+		<div class="row">
+			<div class="col-12">
+				<h3 class="text-center">Cart</h3>
+			</div>
+		</div>
+	</section>
+</section>
+
+<!-- Cart Section Start Here -->
+<section class="cart-page">
 	<div class="container">
 		<div class="row">
-			<!-- Product image  -->
-			<div class="col-md-6 col-12 mb-5 mb-md-0">
-				<div class="image scrolltop">
-					<div class="outer-main">
-						<div class="large-image swiper">
-							<div class="wrap swiper-wrapper">
-								<div class="swiper-slide item">
-									<a href="/images/product_01.jpg" data-fslightbox="first-lightbox">
-										<img src="/images/product_01.jpg" alt="" />
-									</a>
-								</div>
-								<div class="swiper-slide item">
-									<a href="/images/product_01b.jpg" data-fslightbox="first-lightbox">
-										<img src="/images/product_01b.jpg" alt="" />
-									</a>
-								</div>
-								<div class="swiper-slide item">
-									<a href="/images/product_06.jpg" data-fslightbox="first-lightbox">
-										<img src="/images/product_06.jpg" alt="" />
-									</a>
-								</div>
-								<div class="swiper-slide item">
-									<a href="/images/product_06b.jpg" data-fslightbox="first-lightbox">
-										<img src="/images/product_06b.jpg" alt="" />
-									</a>
-								</div>
-								<div class="swiper-slide item">
-									<a href="/images/product_02.jpg" data-fslightbox="first-lightbox">
-										<img src="/images/product_02.jpg" alt="" />
-									</a>
-								</div>
-								<div class="swiper-slide item">
-									<a href="/images/product_02b.jpg" data-fslightbox="first-lightbox">
-										<img src="/images/product_02b.jpg" alt="" />
-									</a>
-								</div>
-							</div>
-
-							<div class="custom-pagination">
-								<div class="swiper-pagination"></div>
-							</div>
+			<div class="col-md-6 col-sm-12 p-0">
+				<div class="details">
+					<div class="item d-flex align-items-center justify-content-between flex-wrap">
+						<div class="cart-img mb-3 mb-sm-0">
+							<img src="/images/product_01.jpg" alt="" />
 						</div>
-					</div>
-
-					<div class="outer-thumbnail">
-						<div class="small-img swiper">
-							<div class="wrap swiper-wrapper">
-								<div class="swiper-slide item">
-									<div class="thumb">
-										<img src="/images/product_01.jpg" alt="" />
-									</div>
-								</div>
-								<div class="swiper-slide item">
-									<div class="thumb">
-										<img src="/images/product_01b.jpg" alt="" />
-									</div>
-								</div>
-								<div class="swiper-slide item">
-									<div class="thumb">
-										<img src="/images/product_06.jpg" alt="" />
-									</div>
-								</div>
-								<div class="swiper-slide item">
-									<div class="thumb">
-										<img src="/images/product_06b.jpg" alt="" />
-									</div>
-								</div>
-								<div class="swiper-slide item">
-									<div class="thumb">
-										<img src="/images/product_02.jpg" alt="" />
-									</div>
-								</div>
-								<div class="swiper-slide item">
-									<div class="thumb">
-										<img src="/images/product_02.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-
-							<!-- <div class="swiper-pagination"></div> -->
+						<div class="cart-details">
+							<h6 class="mb-0">The Sweater in Tosca</h6>
+							<p class="mb-0">Color: Tosca</p>
+							<p class="mb-0">Size: L</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Product Details -->
+			<div class="col-md-6 col-sm-12 p-0">
+				<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
+					<div class="inc-dec">
+						<button>-</button>
+						<input type="text" value="1" class="text-center" />
+						<button>+</button>
+					</div>
+					<div class="">
+						<p class="price mb-0">$45.00</p>
+					</div>
+					<div class="delete-button">
+						<a href="#0"><i class="ri-close-line"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12 p-0">
+				<div class="details">
+					<div class="item d-flex align-items-center justify-content-between flex-wrap">
+						<div class="cart-img mb-3 mb-sm-0">
+							<img src="/images/product_07.jpg" alt="" />
+						</div>
+						<div class="cart-details">
+							<h6 class="mb-0">The Sweater in Tosca</h6>
+							<p class="mb-0">Color: Tosca</p>
+							<p class="mb-0">Size: L</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12 p-0">
+				<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
+					<div class="inc-dec">
+						<button>-</button>
+						<input type="text" value="1" class="text-center" />
+						<button>+</button>
+					</div>
+					<div>
+						<p class="price mb-0">$45.00</p>
+					</div>
+					<div class="delete-button">
+						<a href="#0"><i class="ri-close-line"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12 p-0">
+				<div class="details">
+					<div class="item d-flex align-items-center justify-content-between flex-wrap">
+						<div class="cart-img mb-3 mb-sm-0">
+							<img src="/images/product_08.jpg" alt="" />
+						</div>
+						<div class="cart-details">
+							<h6 class="mb-0">The Sweater in Tosca</h6>
+							<p class="mb-0">Color: Tosca</p>
+							<p class="mb-0">Size: L</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12 p-0">
+				<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
+					<div class="inc-dec">
+						<button>-</button>
+						<input type="text" value="1" class="text-center" />
+						<button>+</button>
+					</div>
+					<div>
+						<p class="price mb-0">$45.00</p>
+					</div>
+					<div class="delete-button">
+						<a href="#0"><i class="ri-close-line"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cart-subtotal-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-12 mb-4 mb-md-0">
+				<div class="add-note">
+					<textarea name="" id="" rows="6" class="form-control" placeholder="Additional Note+"></textarea>
+				</div>
+			</div>
 			<div class="col-md-6 col-12">
-				<div class="summary ps-md-4 ps-0">
-					<h3>The Sweater in Tosca</h3>
-					<div class="d-flex justify-content-between price-review mt-4">
-						<div class="d-flex">
-							<span class="price">$45</span>
-							<div class="discount">
-								<div>$62.00</div>
-								<div>-25%</div>
-							</div>
-						</div>
-						<div class="review">
-							<i class="ri-star-fill"></i>
-							<span>4.8</span>
-							<span class="ps-2">3 Review</span>
-						</div>
+				<div class="subtotal-confirm ps-0 ps-md-4">
+					<div class="mb-3">
+						<span>Subtotal</span>
+						<span class="ms-4">$147.00</span>
 					</div>
-					<div class="color">
-						<p>Colors:</p>
-						<form action="" class="d-flex">
-							<p>
-								<input type="radio" id="tosca" name="color" />
-								<label for="tosca" class="circle tosca"></label>
-							</p>
-							<p>
-								<input type="radio" id="brown" name="color" />
-								<label for="brown" class="circle brown"></label>
-							</p>
-							<p>
-								<input type="radio" id="ocean" name="color" checked />
-								<label for="ocean" class="circle ocean"></label>
-							</p>
-						</form>
-					</div>
-					<div class="size">
-						<p>Sizes:</p>
-						<form action="" class="d-flex">
-							<input type="radio" id="xl" name="size" checked />
-							<label for="xl">XL</label>
-							<input type="radio" id="l" name="size" />
-							<label for="l">L</label>
-							<input type="radio" id="m" name="size" />
-							<label for="m">M</label>
-
-							<input type="radio" id="s" name="size" />
-							<label for="s">S</label>
-						</form>
-					</div>
-					<div class="stock mt-4">
-						<span><strong>201</strong> in stock</span>
-						<span class="ps-3"> <i class="ri-checkbox-circle-line"></i></span>
-					</div>
-					<div class="quentity mt-4 mb-4">
-						<div class="item">
-							<button class="decrease">-</button>
-							<input type="text" value="1" />
-							<button class="increase">+</button>
-						</div>
-						<div class="addcart">
-							<button class="btn-addcart">Add to cart</button>
-						</div>
-						<div class="buynow">
-							<button class="btn-byenow">Buy Now</button>
-						</div>
-					</div>
-					<div class="shipping">
-						<ul class="d-flex gap-3 align-items-center flex-wrap">
+					<div class="subtotal-section mb-5">
+						<ul class="">
 							<li>
-								<a href="#0"><span><i class="ri-heart-2-line"></i></span> <span>Add to wishlist </span></a>
-							</li>
-							<li>
-								<a href="#0"><span><i class="ri-arrow-left-right-fill"></i></span> <span>Compare </span></a>
-							</li>
-							<li>
-								<a href="#0" class="data-trigger"><span><i class="ri-share-forward-line"></i></span> <span>Share</span></a>
-							</li>
-							<li>
-								<a href="#0" class="data-trigger"><span><i class="ri-question-line"></i></span> <span>Ask Question</span></a>
+								<input type="radio" id="account" /> <label for="account">I agree to <a href="#0" class="gary-color">terms & condition</a></label>
 							</li>
 						</ul>
-
-						<ul class="shipping-detalis">
-							<li>
-								<i class="ri-gift-line"></i>
-								<span>Free Shipping & returns</span>
-								<span class="gary-color ps-2">On orders over $100</span>
-							</li>
-							<li>
-								<i class="ri-truck-line"></i>
-								<span>Estimate delevery</span>
-								<span class="gary-color"></span>
-							</li>
-						</ul>
+					</div>
+					<div class="button">
+						<a href="#0" class="checkout-btn">Checkout</a>
 					</div>
 				</div>
 			</div>
