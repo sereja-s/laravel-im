@@ -19,14 +19,17 @@
 <section class="cart-page">
 	<div class="container">
 		<div class="row">
+
+			@foreach($order->products as $product)
+
 			<div class="col-md-6 col-sm-12 p-0">
 				<div class="details">
 					<div class="item d-flex align-items-center justify-content-between flex-wrap">
 						<div class="cart-img mb-3 mb-sm-0">
-							<img src="/images/product_01.jpg" alt="" />
+							<a href="{{ route('product', [$product->category->code, $product->code]) }}"><img src="/images/product_01.jpg" alt="" /></a>
 						</div>
 						<div class="cart-details">
-							<h6 class="mb-0">The Sweater in Tosca</h6>
+							<h6 class="mb-0">{{ $product->name }}</h6>
 							<p class="mb-0">Color: Tosca</p>
 							<p class="mb-0">Size: L</p>
 						</div>
@@ -36,76 +39,25 @@
 			<div class="col-md-6 col-sm-12 p-0">
 				<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
 					<div class="inc-dec">
-						<button>-</button>
+
+						<form action="" method="POST"><button type="submit">-</button>@csrf</form>
+
 						<input type="text" value="1" class="text-center" />
-						<button>+</button>
-					</div>
-					<div class="">
-						<p class="price mb-0">$45.00</p>
-					</div>
-					<div class="delete-button">
-						<a href="#0"><i class="ri-close-line"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-12 p-0">
-				<div class="details">
-					<div class="item d-flex align-items-center justify-content-between flex-wrap">
-						<div class="cart-img mb-3 mb-sm-0">
-							<img src="/images/product_07.jpg" alt="" />
-						</div>
-						<div class="cart-details">
-							<h6 class="mb-0">The Sweater in Tosca</h6>
-							<p class="mb-0">Color: Tosca</p>
-							<p class="mb-0">Size: L</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-12 p-0">
-				<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
-					<div class="inc-dec">
-						<button>-</button>
-						<input type="text" value="1" class="text-center" />
-						<button>+</button>
+
+						<form action="{{ route('basket-add', $product) }}" method="POST"><button type="submit">+</button>@csrf</form>
+
 					</div>
 					<div>
-						<p class="price mb-0">$45.00</p>
+						<p class="price mb-0">{{ $product->price }} руб.</p>
 					</div>
 					<div class="delete-button">
 						<a href="#0"><i class="ri-close-line"></i></a>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-sm-12 p-0">
-				<div class="details">
-					<div class="item d-flex align-items-center justify-content-between flex-wrap">
-						<div class="cart-img mb-3 mb-sm-0">
-							<img src="/images/product_08.jpg" alt="" />
-						</div>
-						<div class="cart-details">
-							<h6 class="mb-0">The Sweater in Tosca</h6>
-							<p class="mb-0">Color: Tosca</p>
-							<p class="mb-0">Size: L</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-12 p-0">
-				<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
-					<div class="inc-dec">
-						<button>-</button>
-						<input type="text" value="1" class="text-center" />
-						<button>+</button>
-					</div>
-					<div>
-						<p class="price mb-0">$45.00</p>
-					</div>
-					<div class="delete-button">
-						<a href="#0"><i class="ri-close-line"></i></a>
-					</div>
-				</div>
-			</div>
+
+			@endforeach
+
 		</div>
 	</div>
 </section>

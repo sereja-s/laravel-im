@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Товар')
+@section('title', $product)
 
 @section('content')
 
@@ -151,12 +151,19 @@
 							<input type="text" value="1" />
 							<button class="increase">+</button>
 						</div>
-						<div class="addcart">
-							<button class="btn-addcart">Add to cart</button>
-						</div>
-						<div class="buynow">
-							<button class="btn-byenow">Buy Now</button>
-						</div>
+
+						<form action="{{ route('basket-add', $product) }}" method="POST">
+
+							<div class="addcart" style="padding-bottom: 15px;">
+								<button type="submit" class="btn-addcart">В корзину</button>
+							</div>
+							<div class="buynow">
+								<button class="btn-byenow">Buy Now</button>
+							</div>
+							@csrf
+
+						</form>
+
 					</div>
 					<div class="shipping">
 						<ul class="d-flex gap-3 align-items-center flex-wrap">

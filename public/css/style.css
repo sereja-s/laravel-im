@@ -317,11 +317,12 @@ a:hover {
 
 .label {
 	line-height: initial;
-	top: auto;
+	top: 15px;
+	left: 15px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	bottom: 20px;
+	/* justify-content: center;
+	align-items: center; */
+	/* bottom: 20px; */
 	z-index: 2;
 }
 
@@ -2556,6 +2557,7 @@ a:hover {
 .cart-page .details {
 	background-color: var(--flashwhite-color);
 	padding: 3em 3em 2.2em 2em;
+	margin-bottom: 7px;
 }
 
 .details .cart-img {

@@ -35,6 +35,8 @@ class MainController extends Controller
 	public function product($category, $product = null)
 	{
 		return view('product', ['product' => $product]);
+
+		//$a = 1;
 	}
 
 	public function products()
@@ -42,15 +44,5 @@ class MainController extends Controller
 		$products = Product::get();
 
 		return view('products', compact('products'));
-	}
-
-	public function basket()
-	{
-		return view('basket');
-	}
-
-	public function basketPlace()
-	{
-		return view('order');
 	}
 }

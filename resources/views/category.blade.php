@@ -152,11 +152,11 @@
 
 						@foreach($category->products as $product)
 
-						<div class="col-md-4 col-sm-6 col-12 mb-4">
 
-							@include('card', compact('product'))
 
-						</div>
+						@include('card', compact('product'))
+
+
 
 						@endforeach
 
