@@ -40,15 +40,16 @@
 				<div class="cart-quantity d-flex justify-content-between align-items-center flex-wrap">
 					<div class="inc-dec">
 
-						<form action="" method="POST"><button type="submit">-</button>@csrf</form>
+						<form action="{{ route('basket-remove', $product) }}" method="POST"><button type="submit">-</button>@csrf</form>
 
-						<input type="text" value="1" class="text-center" />
+						<input type="text" value="{{ $product->pivot->count }}" class="text-center" />
 
 						<form action="{{ route('basket-add', $product) }}" method="POST"><button type="submit">+</button>@csrf</form>
 
 					</div>
 					<div>
-						<p class="price mb-0">{{ $product->price }} руб.</p>
+						<p class="price mb-0">{{ $product->price }} руб. за ед.</p>
+						<p class="price mb-0">всего: {{ $product->getPriceForCount() }} руб.</p>
 					</div>
 					<div class="delete-button">
 						<a href="#0"><i class="ri-close-line"></i></a>
@@ -73,8 +74,8 @@
 			<div class="col-md-6 col-12">
 				<div class="subtotal-confirm ps-0 ps-md-4">
 					<div class="mb-3">
-						<span>Subtotal</span>
-						<span class="ms-4">$147.00</span>
+						<span>Итого к оплате:</span>
+						<span class="ms-4">{{ $order->getFullPrice() }} руб.</span>
 					</div>
 					<div class="subtotal-section mb-5">
 						<ul class="">

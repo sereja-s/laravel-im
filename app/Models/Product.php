@@ -33,4 +33,18 @@ class Product extends Model
 
 		return $this->belongsTo(Category::class);
 	}
+
+	// +ч.7: Pivot table
+	/** 
+	 * Метод пересчитает общую цену за товар в корзине при изменении его кол-ва
+	 */
+	public function getPriceForCount()
+	{
+		if (!is_null($this->pivot)) {
+
+			return $this->pivot->count * $this->price;
+		}
+
+		return $this->price;
+	}
 }
