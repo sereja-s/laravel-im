@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Категория:' .' '. $category->name)
 
@@ -154,7 +154,7 @@
 
 
 
-						@include('card', compact('product'))
+						@include('layouts.card', compact('product'))
 
 
 

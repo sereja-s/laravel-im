@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Все товары')
 
@@ -151,7 +151,7 @@
 
 						@foreach($products as $product)
 
-						@include('card', compact('product'))
+						@include('layouts.card', compact('product'))
 
 						@endforeach
 

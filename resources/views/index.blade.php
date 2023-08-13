@@ -1,4 +1,4 @@
-@extends('master', ['file' => 'index'])
+@extends('layouts.master', ['file' => 'index'])
 
 @section('title', 'Главная')
 

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Корзина')
 
@@ -9,7 +9,7 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-12">
-				<h3 class="text-center">Cart</h3>
+				<h3 class="text-center">Корзина</h3>
 			</div>
 		</div>
 	</section>
@@ -80,12 +80,12 @@
 					<div class="subtotal-section mb-5">
 						<ul class="">
 							<li>
-								<input type="radio" id="account" /> <label for="account">I agree to <a href="#0" class="gary-color">terms & condition</a></label>
+								<input type="radio" id="account" required /> <label for="account"> Я согласен с <a href="#0" class="gary-color">политикой конфиденциальности</a></label>
 							</li>
 						</ul>
 					</div>
 					<div class="button">
-						<a href="#0" class="checkout-btn">Checkout</a>
+						<a href="{{ route('basket-place') }}" class="checkout-btn">Оформить заказ</a>
 					</div>
 				</div>
 			</div>

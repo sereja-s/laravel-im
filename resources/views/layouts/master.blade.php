@@ -232,6 +232,17 @@
 
 		@endif
 
+		@if(session()->has('success'))
+
+		<p class="alert alert-success" style="text-align: center; margin-top: 20px;">{{ session()->get('success') }}</p>
+
+		@endif
+		@if(session()->has('warning'))
+
+		<p class="alert alert-warning" style="text-align: center; margin-top: 20px;">{{ session()->get('warning') }}</p>
+
+		@endif
+
 		@yield('content')
 
 	</main>

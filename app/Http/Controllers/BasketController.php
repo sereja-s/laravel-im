@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
@@ -18,11 +19,6 @@ class BasketController extends Controller
 		}
 
 		return view('basket', compact('order'));
-	}
-
-	public function basketPlace()
-	{
-		return view('order');
 	}
 
 	/** 
@@ -65,6 +61,11 @@ class BasketController extends Controller
 			$order->products()->attach($productId);
 		}
 
+		// +ч.8: Request, Flash
+		// чтобы добавить сообщение об обуспешном добавлении товара получим эдесь этот продукт(товар) по его id
+		$product = Product::find($productId);
+		session()->flash('success', $product->name . ' добавлен в корзину');
+
 		return redirect()->route('basket');
 	}
 
@@ -102,7 +103,71 @@ class BasketController extends Controller
 			}
 		}
 
+		$product = Product::find($productId);
+		session()->flash('warning', $product->name . ' удалён из корзины');
 
 		return redirect()->route('basket');
+	}
+
+	/** 
+	 * Метод оформления заказа
+	 * (+ч.8: Request, Flash)
+	 */
+	public function basketPlace()
+	{
+		$orderId = session('orderId');
+
+		if (is_null($orderId)) {
+
+			return redirect()->route('index');
+		}
+
+		$order = Order::find($orderId);
+
+		return view('order', compact('order'));
+	}
+
+	/** 
+	 * Метод потверждения(сохранения) заказа
+	 * На вход: HTTP-запрос с данными из формы (при назатии на кнопку: сделать заказ)
+	 * (ч.8: Request, Flash)
+	 */
+	public function basketConfirm(Request $request)
+	{
+		$orderId = session('orderId');
+
+		if (is_null($orderId)) {
+
+			return redirect()->route('index');
+		}
+
+		$order = Order::find($orderId);
+
+		// когда заказ найден в БД, необходимо к нему обратиться и обновить его параметры(значения полей таблицы: orders)
+		// (эти параметры получим из запроса поданного на вход):
+		//dd($request->all());
+		//$order->name = $request->name;
+		//$order->phone = $request->phone;
+		//$order->status = 1;
+
+		// сохраним заказ с внесёнными изменениями:
+		//$order->save();
+
+		// весь описанный функционал перенесли в модель: Order
+		$success = $order->saveOrder($request->name, $request->phone);
+
+		if ($success) {
+
+			// для показа сообщений используем функционал Flash (переменные внутри сессии, которые позволяют опсле первого отображения их удалять)
+			session()->flash('success', 'Ваш заказ принят в обработку');
+		} else {
+
+			session()->flash('warning', 'Ошибка при формировании заказа');
+		}
+
+		// затем его нужно удалить из сессии:
+		//session()->forget('orderId');
+
+		return redirect()->route('index');
 	}
 }

@@ -34,4 +34,27 @@ class Order extends Model
 
 		return $sum;
 	}
+
+	/** 
+	 * Метод сохранения заказа
+	 */
+	public function saveOrder($name, $phone)
+	{
+		if ($this->status == 0) {
+
+			// когда заказ найден в БД, необходимо к нему обратиться и обновить его параметры(значения полей таблицы: orders)
+			// (эти параметры получим из запроса поданного на вход):
+			$this->name = $name;
+			$this->phone = $phone;
+			$this->status = 1;
+
+			// сохраним заказ с внесёнными изменениями:
+			$this->save();
+			// затем его нужно удалить из сессии:
+			session()->forget('orderId');
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
