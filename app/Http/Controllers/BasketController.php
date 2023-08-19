@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -61,10 +62,21 @@ class BasketController extends Controller
 			$order->products()->attach($productId);
 		}
 
+		// +ч.11: Создание Middleware, Auth
+		// если мы авторизованы, нужно добавить поле: user_id к заказу
+		if (Auth::check()) {
+
+			$order->user_id = Auth::id();
+
+			// сохраняем заказ с id пользователя, который делал заказ 
+			$order->save();
+		}
+
 		// +ч.8: Request, Flash
 		// чтобы добавить сообщение об обуспешном добавлении товара получим эдесь этот продукт(товар) по его id
 		$product = Product::find($productId);
-		session()->flash('success', $product->name . ' добавлен в корзину');
+
+		session()->flash('success', 'товар: ' . $product->name . ' добавлен в корзину');
 
 		return redirect()->route('basket');
 	}
@@ -104,7 +116,7 @@ class BasketController extends Controller
 		}
 
 		$product = Product::find($productId);
-		session()->flash('warning', $product->name . ' удалён из корзины');
+		session()->flash('warning', 'товар: ' . $product->name . ' удалён из корзины');
 
 		return redirect()->route('basket');
 	}

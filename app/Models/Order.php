@@ -20,6 +20,15 @@ class Order extends Model
 	}
 
 	/** 
+	 * Метод реализует связь заказa с пользователем
+	 * (ч.10: Middleware Авторизации)
+	 */
+	/* public function user()
+	{
+		return $this->belongsTo(User::class);
+	} */
+
+	/** 
 	 * Метод вернёт полную стоимость заказа в корзине за все продукты
 	 * (ч.7: Pivot table)
 	 */

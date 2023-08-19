@@ -28,16 +28,30 @@
 			<div class="container d-flex justify-content-between align-items-center">
 				<div class="header-left">
 					<a href="#0" class="d-lg-none d-block menu-toggle"><i class="ri-menu-line"></i></a>
-					<ul class="d-lg-flex d-none p-0 gap-3">
-						<li class="nav-item">
+					<ul class="d-lg-flex d-none p-0 gap-3 sub">
+
+						<li class="nav-item" style="position:relative;">
 							<a href="#0" class="nav-link"><i class="ri-user-line"></i></a>
 						</li>
+						<div class="sub-menu" style="position: absolute; top: 77px; left: 7px;">
+							<ul class="sub-link">
+								@guest
+								<li class="nav-item"><a href="{{ route('register') }}" class="nav-link" style="font-size: 16px;">Pегистрация</a></li>
+								<li class="nav-item"><a href="{{ route('login') }}" class="nav-link" style="font-size: 16px;">Войти</a></li>
+								@endguest
+								@auth
+								<li class="nav-item"><a href="{{ route('home') }}" class="nav-link" style="font-size: 16px;">Личный кабинет</a></li>
+								<li class="nav-item"><a href="{{ route('log-out') }}" class="nav-link" style="font-size: 16px;">Выйти</a></li>
+								@endauth
+							</ul>
+						</div>
 						<li class="nav-item">
 							<a href="#0" class="nav-link position-relative">
 								<i class="ri-star-line"></i>
 								<span class="item-flotaing position-absolute"><span>7</span></span>
 							</a>
 						</li>
+
 					</ul>
 				</div>
 				<div class="header-center d-lg-flex d-none">
