@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -39,7 +40,17 @@ class CategoryController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		Category::create($request->all());
+		// получим путь к файлу, который был загружен (в форме это input c type = "file" name = "image") с указанием имени 
+		// папки в которой картинка будет сохранена (+ч.13: Storage)
+		$path = $request->file('image')->store('categories');
+
+		// сохраним запрос на сохранение категории в переменной
+		$params = $request->all();
+
+		// изменем данные в ячейке: image на полученные
+		$params['image'] = $path;
+
+		Category::create($params);
 
 		return redirect()->route('categories.index');
 	}
@@ -75,7 +86,16 @@ class CategoryController extends Controller
 	 */
 	public function update(Request $request, Category $category)
 	{
-		$category->update($request->all());
+		// чтобы при редактировании категории загрузить новую картинку, старую нужно удалить (+ч.13: Storage)
+		Storage::delete($category->image);
+
+		$path = $request->file('image')->store('categories');
+
+		$params = $request->all();
+
+		$params['image'] = $path;
+
+		$category->update($params);
 
 		return redirect()->route('categories.index');
 	}

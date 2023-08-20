@@ -26,7 +26,7 @@
 				<div class="details">
 					<div class="item d-flex align-items-center justify-content-between flex-wrap">
 						<div class="cart-img mb-3 mb-sm-0">
-							<a href="{{ route('product', [$product->category->code, $product->code]) }}"><img src="/images/product_01.jpg" alt="" /></a>
+							<a href="{{ route('product', [$product->category->code, $product->code]) }}"><img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" /></a>
 						</div>
 						<div class="cart-details">
 							<h6 class="mb-0">{{ $product->name }}</h6>

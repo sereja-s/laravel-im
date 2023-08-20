@@ -3,11 +3,11 @@
 	<a href="{{ route('product', [$product->category->code, $product->code]) }}" class="thumbnail">
 
 		<div class=" product-img">
-			<img src="/images/product_01.jpg" class="" alt="" />
+			<img src="{{ Storage::url($product->image) }}" class="" alt="{{ $product->name }}" />
 		</div>
-		<div class="hoverable-img">
+		<!-- <div class="hoverable-img">
 			<img src="/images/product_01b.jpg" alt="" />
-		</div>
+		</div> -->
 		<div class="label"><span>-32%</span></div>
 
 		<div class="actions">

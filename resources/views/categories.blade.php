@@ -24,11 +24,11 @@
 								<div class="thumbnail">
 
 									<div class="product-img">
-										<img src="/images/product_01.jpg" class="" alt="" />
+										<img src="{{ Storage::url($category->image) }}" class="" alt="{{ $category->name }}" />
 									</div>
-									<div class="hoverable-img">
+									<!-- <div class="hoverable-img">
 										<img src="/images/product_01b.jpg" alt="" />
-									</div>
+									</div> -->
 
 								</div>
 								<div class="product-detalis text-center">
