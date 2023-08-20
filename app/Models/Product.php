@@ -9,6 +9,12 @@ class Product extends Model
 {
 	use HasFactory;
 
+	// добавляем поля что бы могли их редактировать
+	protected $fillable = [
+		'name', 'code', 'price', 'category_id', 'description', 'image', 'hit', 'new', 'recommend', 'count', 'name_en',
+		'description_en'
+	];
+
 	public function getCategory()
 	{
 		// получаем все записи таблицы: Категории

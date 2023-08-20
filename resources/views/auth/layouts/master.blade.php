@@ -33,7 +33,7 @@
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="{{ route('categories.index') }}">Категории</a></li>
-						<li><a href="{{ route('products') }}">Товары</a></li>
+						<li><a href="{{ route('products.index') }}">Товары</a></li>
 						<li><a href="http://laravel-diplom-1.rdavydov.ru/admin/orders">Заказы</a></li>
 					</ul>
 
@@ -75,7 +75,7 @@
 		<div class="py-4">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-md-8">
+					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">@yield('title')</div>
 
