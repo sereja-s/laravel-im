@@ -23,3 +23,13 @@ DELETE	  | /photos/{photo}	    | destroy |  photos.destroy
 
 При попытке создать новую категорию выдало ошибку: Add [_token] to fillable property to allow mass assignment on [App\Models\Category]. Необходимо в соответствующей модели(здесь- Category), указать поля которые можно заполнять в форме (для создания(редактирования) категорий в админке):	
 	protected $fillable = ['code', 'name', 'description', 'image', 'name_en', 'description_en']; 
+
+В форме категорий реализован двойной функционал: редактирование и добавление категории и соответственно при отправке формы должны применяться разные методы Это реализовано при помощи технологии: Spoofing т.е. в форму добавляется метод, который сработает по условию:
+	@isset($category)
+			@method('PUT')
+			@endisset
+			@csrf
+при этом добавится input c type = "hidden" name = "method" value = "PUT"
+Аналогично делается для кнопки: удалить (прописывается в форме: 
+	@csrf
+	@method('DELETE'))

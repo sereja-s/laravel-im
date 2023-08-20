@@ -16,6 +16,7 @@
 
 	<form method="POST" enctype="multipart/form-data" @isset($category) action="{{ route('categories.update', $category) }}" @else action="{{ route('categories.store') }}" @endisset>
 		<div>
+
 			@isset($category)
 			@method('PUT')
 			@endisset
@@ -42,7 +43,7 @@
 				</div>
 			</div>
 
-			<br>
+			<!-- <br>
 			<div class="input-group row">
 				<label for="name" class="col-sm-2 col-form-label">Название en: </label>
 				<div class="col-sm-6">
@@ -51,7 +52,7 @@
 					@enderror
 					<input type="text" class="form-control" name="name_en" id="name_en" value="@isset($category){{ $category->name_en }}@endisset">
 				</div>
-			</div>
+			</div> -->
 
 			<br>
 			<div class="input-group row">
@@ -65,7 +66,7 @@
 			</div>
 			<br>
 
-			<div class="input-group row">
+			<!-- <div class="input-group row">
 				<label for="description" class="col-sm-2 col-form-label">Описание en: </label>
 				<div class="col-sm-6">
 					@error('description_en')
@@ -74,7 +75,7 @@
 					<textarea name="description_en" id="description_en" cols="72" rows="7">@isset($category){{ $category->description_en }}@endisset</textarea>
 				</div>
 			</div>
-			<br>
+			<br> -->
 
 			<div class="input-group row">
 				<label for="image" class="col-sm-2 col-form-label">Картинка: </label>

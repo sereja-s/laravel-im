@@ -22,7 +22,7 @@ class CategoryController extends Controller
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Метод показывает форму создания категории
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -45,29 +45,29 @@ class CategoryController extends Controller
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Метод показывает информацию о товаре в админке
 	 *
 	 * @param  \App\Models\Category  $category
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Category $category)
 	{
-		//
+		return view('auth.categories.show', compact('category'));
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Метод показывает форму редактирования категории 
 	 *
 	 * @param  \App\Models\Category  $category
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit(Category $category)
 	{
-		//
+		return view('auth.categories.form', compact('category'));
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Метод редактирования категории
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \App\Models\Category  $category
@@ -75,17 +75,21 @@ class CategoryController extends Controller
 	 */
 	public function update(Request $request, Category $category)
 	{
-		//
+		$category->update($request->all());
+
+		return redirect()->route('categories.index');
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Метод удаления категории
 	 *
 	 * @param  \App\Models\Category  $category
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy(Category $category)
 	{
-		//
+		$category->delete();
+
+		return redirect()->route('categories.index');
 	}
 }
