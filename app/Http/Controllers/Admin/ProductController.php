@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -36,13 +37,14 @@ class ProductController extends Controller
 
 	/**
 	 * Метод сохраняет созданные в админке товары
+	 * (+ч.14: Валидация, FormRequest)
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store(ProductRequest $request)
 	{
-		// +ч.13: Storage
+		// (+ч.13: Storage)
 		$path = $request->file('image')->store('products');
 
 		$params = $request->all();
@@ -80,14 +82,15 @@ class ProductController extends Controller
 
 	/**
 	 * Update the specified resource in storage.
+	 * (+ч.14: Валидация, FormRequest)
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \App\Models\Product  $product
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Product $product)
+	public function update(ProductRequest $request, Product $product)
 	{
-		// +ч.13: Storage
+		// (+ч.13: Storage)
 		Storage::delete($product->image);
 
 		$path = $request->file('image')->store('products');
