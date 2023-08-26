@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\Person\OrderController as PersonOrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,26 +46,40 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('log-out');
 	});
 }); */
 
-Route::group([
+// ч.15: Blade Custom Directive
+Route::middleware(['auth'])->group(function () {
 
-	'middleware' => 'auth',
+	Route::group([
 
-	'prefix' => 'admin',
-], function () {
+		//'middleware' => 'auth',
+		//'namespace' => 'Admin',
+		'prefix' => 'admin',
+	], function () {
 
-	Route::group(['middleware' => 'is_admin'], function () {
+		Route::group(['middleware' => 'is_admin'], function () {
 
-		Route::get('/orders', [OrderController::class, 'index'])->name('home');
+			Route::get('/orders', [OrderController::class, 'index'])->name('home');
+			Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+		});
+
+		Route::group(['middleware' => 'is_admin'], function () {
+
+			Route::resource('categories', CategoryController::class);
+			Route::resource('products', ProductController::class);
+		});
 	});
 
-	Route::group(['middleware' => 'is_admin'], function () {
+	Route::group([
 
-		Route::resource('categories', CategoryController::class);
-		Route::resource('products', ProductController::class);
+		//'namespace' => 'Person',
+		'prefix' => 'person',
+		'as' => 'person.',
+	], function () {
+
+		Route::get('/orders', [PersonOrderController::class, 'index'])->name('orders.index');
+		Route::get('/orders/{order}', [PersonOrderController::class, 'show'])->name('orders.show');
 	});
 });
-
-
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/products', [MainController::class, 'products'])->name('products');
@@ -87,12 +102,6 @@ Route::group(['prefix' => 'basket'], function () {
 		Route::post('/confirm', [BasketController::class, 'basketConfirm'])->name('basket-confirm');
 	});
 });
-
-
-
-
-
-
 
 Route::get('/{category}', [MainController::class, 'category'])->name('category');
 Route::get('/{category}/{product?}', [MainController::class, 'product'])->name('product');

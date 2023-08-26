@@ -26,14 +26,19 @@ class BasketIsNotEmpty
 			$order = Order::findOrFail($orderId);
 
 			// если в заказе(корзине) нет товаров, то сделаем редирект обратно на ту страницу с которой делали запрос
-			if ($order->products->count() == 0) {
+			// (+ч.15: Blade Custom Directive)
+			if ($order->products->count() > 0) {
 
-				session()->flash('warning', 'Ваша корзина пуста');
+				//session()->flash('warning', 'Ваша корзина пуста');
+				//return redirect()->route('index');
 
-				return redirect()->route('index');
+				return $next($request);
 			}
 		}
 
-		return $next($request);
+		// (+ч.15: Blade Custom Directive)
+		session()->flash('warning', 'Ваша корзина пуста');
+		return redirect()->route('index');
+		//return $next($request);
 	}
 }

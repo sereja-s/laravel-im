@@ -36,7 +36,18 @@
 				<td>{{ $order->getFullPrice() }} руб.</td>
 				<td>
 					<div class="btn-group" role="group">
-						<a class="btn btn-success" type="button" href="#">Открыть</a>
+
+						<!-- ч.15: Blade Custom Directive -->
+						@admin
+
+						<a class="btn btn-success" type="button" href="{{ route('orders.show', $order) }}">Открыть</a>
+
+						@else
+
+						<a class="btn btn-success" type="button" href="{{ route('person.orders.show', $order) }}">Открыть</a>
+
+						@endadmin
+
 					</div>
 				</td>
 			</tr>

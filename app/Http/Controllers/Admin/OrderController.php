@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
-
+use League\CommonMark\Node\Query\OrExpr;
 
 class OrderController extends Controller
 
@@ -32,5 +32,14 @@ class OrderController extends Controller
 		$orders = Order::get()->where('status', 1);
 
 		return view('auth.orders.index', compact('orders'));
+	}
+
+	/** 
+	 * Метод покажет таблицу одного заказа
+	 * (+ч.15: Blade Custom Directive)
+	 */
+	public function show(Order $order)
+	{
+		return view('auth.orders.show', compact('order'));
 	}
 }

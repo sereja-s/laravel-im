@@ -34,14 +34,27 @@
 							<a href="#0" class="nav-link"><i class="ri-user-line"></i></a>
 						</li>
 						<div class="sub-menu" style="position: absolute; top: 77px; left: 7px;">
-							<ul class="sub-link">
+							<ul class="sub-link" style="line-height: 10px">
+
 								@guest
 								<li class="nav-item"><a href="{{ route('register') }}" class="nav-link" style="font-size: 16px;">Pегистрация</a></li>
 								<li class="nav-item"><a href="{{ route('login') }}" class="nav-link" style="font-size: 16px;">Войти</a></li>
 								@endguest
+
 								@auth
-								<li class="nav-item"><a href="{{ route('home') }}" class="nav-link" style="font-size: 16px;">Личный кабинет</a></li>
+
+								@admin
+
+								<li class="nav-item"><a href="{{ route('home') }}" class="nav-link" style="font-size: 16px; line-height: 15px">Панель администратора</a></li>
+
+								@else
+
+								<li class="nav-item"><a href="{{ route('person.orders.index') }}" class="nav-link" style="font-size: 16px;">Мои заказы</a></li>
+
+								@endadmin
+
 								<li class="nav-item"><a href="{{ route('log-out') }}" class="nav-link" style="font-size: 16px;">Выйти</a></li>
+
 								@endauth
 							</ul>
 						</div>

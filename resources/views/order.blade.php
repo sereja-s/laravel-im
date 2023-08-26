@@ -37,10 +37,10 @@
 							<label for="" class="form-label">Телефон*</label>
 							<input type="tel" name="phone" class="form-control" placeholder="Ваш телефон" />
 						</div>
-						<!-- <div class="col-md-6 col-12">
+						<div class="col-md-6 col-12">
 							<label for="" class="form-label">Email*</label>
 							<input type="email" name="email" class="form-control" placeholder="Ваша эл.почта" />
-						</div> -->
+						</div>
 					</div>
 					<!-- <div class="mb-3">
 						<label for="" class="form-label">Адрес</label>

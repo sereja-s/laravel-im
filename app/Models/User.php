@@ -44,7 +44,16 @@ class User extends Authenticatable
 	 */
 	public function isAdmin()
 	{
-		// здесь is_admin-название ячейки массива в свойстве: $routeMiddleware в файле: Kernel.php в которой прописан путь к соответствующему middleware
+		// здесь is_admin- название ячейки массива в свойстве: $routeMiddleware в файле: Kernel.php в которой прописан путь к соответствующему middleware
 		return $this->is_admin === 1;
+	}
+
+	/** 
+	 * Метод реализует связь пользователя с его заказами
+	 * (+ч.15: Blade Custom Directive)
+	 */
+	public function orders()
+	{
+		return $this->hasMany(Order::class);
 	}
 }

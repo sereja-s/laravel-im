@@ -31,10 +31,17 @@
 				</a>
 
 				<div id="navbar" class="collapse navbar-collapse">
+
 					<ul class="nav navbar-nav">
+
+						@admin
+
 						<li><a href="{{ route('categories.index') }}">Категории</a></li>
 						<li><a href="{{ route('products.index') }}">Товары</a></li>
-						<li><a href="http://laravel-diplom-1.rdavydov.ru/admin/orders">Заказы</a></li>
+						<li><a href="{{ route('home') }}">Заказы</a></li>
+
+						@endadmin
+
 					</ul>
 
 					@guest
@@ -52,7 +59,15 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item dropdown sub">
 							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+								@admin
+
 								Admin
+
+								@else {{ Auth::user()->name }}
+
+								@endadmin
+
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right sub-menu" aria-labelledby="navbarDropdown">
