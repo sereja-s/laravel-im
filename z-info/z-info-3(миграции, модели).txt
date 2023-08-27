@@ -13,9 +13,10 @@
 После внесения изменений, нужно опять запустить миграции: php artisan migrate
 
 -Создание нового поля в уже имеющейся таблице (ч.11: Создание Middleware, Auth):
+	$php artisan make:migration alter_table_users  В миграции прописать необходимое поле и запустить миграцию
 
-$php artisan make:migration alter_table_users В миграции прописать необходимое поле и запустить миграцию
-
+- тоже самое, но появившаяся миграция с указанием названия изменяемой таблицы (ч.17: Checkbox, Mutator):
+	$php artisan make:migration alter_table_products --table=products
 
 4. Создадим модель в app\Models которая будет работать с соответствующей таблицей БД (Называем её как и таблицу,
 но с большой буквы и в единственном числе): php artisan make:model Product

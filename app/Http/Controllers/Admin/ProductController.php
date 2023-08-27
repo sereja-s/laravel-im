@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class ProductController extends Controller
 {
 	/**
@@ -45,11 +46,26 @@ class ProductController extends Controller
 	public function store(ProductRequest $request)
 	{
 		// (+ч.13: Storage)
-		$path = $request->file('image')->store('products');
+		//$path = $request->file('image')->store('products');
 
 		$params = $request->all();
 
-		$params['image'] = $path;
+		unset($params['image']);
+
+		if ($request->has('image')) {
+
+			$params['image'] = $request->file('image')->store('products');
+		}
+		//$params['image'] = $path;
+
+		// (+ч.17: Checkbox, Mutator)
+		/* foreach (['new', 'hit', 'recommend'] as $fieldName) {
+
+			if (isset($params[$fieldName])) {
+
+				$params[$fieldName] = 1;
+			}
+		} */
 
 		Product::create($params);
 
@@ -91,13 +107,29 @@ class ProductController extends Controller
 	public function update(ProductRequest $request, Product $product)
 	{
 		// (+ч.13: Storage)
-		Storage::delete($product->image);
-
-		$path = $request->file('image')->store('products');
+		//Storage::delete($product->image);
+		//$path = $request->file('image')->store('products');
 
 		$params = $request->all();
 
-		$params['image'] = $path;
+		unset($params['image']);
+
+		if ($request->has('image')) {
+
+			Storage::delete($product->image);
+
+			$params['image'] = $request->file('image')->store('products');
+		}
+		//$params['image'] = $path;
+
+		// (+ч.17: Checkbox, Mutator)
+		foreach (['new', 'hit', 'recommend'] as $fieldName) {
+
+			if (!isset($params[$fieldName])) {
+
+				$params[$fieldName] = 0;
+			}
+		}
 
 		$product->update($params);
 

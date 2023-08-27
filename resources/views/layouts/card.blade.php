@@ -2,13 +2,29 @@
 
 	<a href="{{ route('product', [$product->category->code, $product->code]) }}" class="thumbnail">
 
-		<div class=" product-img">
+		<div class="product-img">
+
 			<img src="{{ Storage::url($product->image) }}" class="" alt="{{ $product->name }}" />
+
 		</div>
 		<!-- <div class="hoverable-img">
 			<img src="/images/product_01b.jpg" alt="" />
 		</div> -->
 		<div class="label"><span>-32%</span></div>
+		<div class="labels">
+			@if($product->isNew())
+			<span class="badge badge-success">Новинка</span>
+			@endif
+
+			@if($product->isRecommend())
+			<span class="badge badge-warning">Рекомендуем</span>
+			@endif
+
+			@if($product->isHit())
+			<span class="badge badge-danger">Хит</span>
+			@endif
+		</div>
+
 
 		<div class="actions">
 			<ul>
@@ -30,7 +46,7 @@
 
 		<div class="addcart" style="display: flex; justify-content: center; position: absolute; bottom: 77px;
     left: 15px; z-index: 10">
-			<button type="submit" class="btn-addcart" style="border-radius: 5px;  padding: 5px 10px; background-color: var(--primary-color); border: none; color: white;">В корзину</button>
+			<button type="submit" class="btn-addcart" style="border-radius: 5px;  padding: 5px 10px; background-color: #1288d7; border: none; color: white;">В корзину</button>
 		</div>
 
 		@csrf
@@ -45,7 +61,7 @@
 	@endisset -->
 
 		<span class="discount">$63.00</span>
-		<span class="current">{{$product->price}}руб.</span>
+		<span class="current">{{ $product->price }}руб.</span>
 	</div>
 
 </div>

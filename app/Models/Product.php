@@ -40,9 +40,9 @@ class Product extends Model
 		return $this->belongsTo(Category::class);
 	}
 
-	// +ч.7: Pivot table
 	/** 
 	 * Метод пересчитает общую цену за товар в корзине при изменении его кол-ва
+	 * (+ч.7: Pivot table)
 	 */
 	public function getPriceForCount()
 	{
@@ -52,5 +52,44 @@ class Product extends Model
 		}
 
 		return $this->price;
+	}
+
+	// ч.17: Checkbox, Mutator 
+	/** 
+	 * Метод-Mutator вызывается перед сохранением атрибута товара: new
+	 */
+	public function setNewAttribute($value)
+	{
+		$this->attributes['new'] = $value === 'on' ? 1 : 0;
+	}
+	/** 
+	 * Метод-Mutator вызывается перед сохранением атрибута товара: hit
+	 */
+	public function setHitAttribute($value)
+	{
+		$this->attributes['hit'] = $value === 'on' ? 1 : 0;
+	}
+	/** 
+	 * Метод-Mutator вызывается перед сохранением атрибута товара: recommend
+	 */
+	public function setRecommendAttribute($value)
+	{
+		$this->attributes['recommend'] = $value === 'on' ? 1 : 0;
+	}
+
+
+	// ч.17: Checkbox, Mutator
+	// методы вернут true если значение соответствующего поля равно 1
+	public function isHit()
+	{
+		return $this->hit === 1;
+	}
+	public function isNew()
+	{
+		return $this->new === 1;
+	}
+	public function isRecommend()
+	{
+		return $this->recommend === 1;
 	}
 }
