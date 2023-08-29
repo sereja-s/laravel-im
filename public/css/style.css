@@ -2757,7 +2757,7 @@ a:hover {
 	cursor: pointer;
 }
 
-/* ========================================================================================================= */
+/* ====================================================================================================================*/
 
 div.labels {
 	position: absolute;
@@ -2773,7 +2773,6 @@ div.labels {
 }
 
 
-
 span.badge.badge-success {
 	color: #fff;
 	background-color: #28a745;
@@ -2787,4 +2786,41 @@ span.badge.badge-warning {
 span.badge.badge-danger {
 	color: #212529;
 	background-color: #ffc107;
+}
+
+/* ==================================================================================================================== */
+
+.btn {
+	background-color: #ffffff;
+	border: 1px solid #1288d7;
+	border-radius: 4px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #1288d7;
+	text-align: center;
+	height: 40px;
+	padding: 0 20px;
+	cursor: pointer;
+	display: block;
+	-webkit-transition: all linear 0.3s;
+	-o-transition: all linear 0.3s;
+	transition: all linear 0.3s;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.btn:hover {
+	background-color: #1288d7;
+	color: #ffffff;
+}
+
+.btn.btn--transparent-gray {
+	border-color: rgba(38, 38, 38, 0.15);
+	background-color: transparent;
+	color: #939495;
+}
+
+.btn.btn--transparent-gray:hover {
+	background-color: rgba(38, 38, 38, 0.15);
+	color: #ffffff;
 }

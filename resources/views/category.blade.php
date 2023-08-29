@@ -14,11 +14,14 @@
 			<p class="text-center">( Количество товаров: {{$category->products->count()}} )</p>
 			<div class="col-lg-3 col-md-12 mb-lg-0 mb-5">
 				<!-- Filter section -->
-				<div class="filter-conteiner">
+
+				@include('layouts.filter')
+
+				<!-- <div class="filter-conteiner">
 					<div class="filter-trigger">
 						<a href="#0"><i class="ri-filter-line"></i></a>
 					</div>
-					<div class="filter-content">
+					<form class="filter-content">
 						<h3 class="filter-heading">Filter</h3>
 						<ul class="filter-nav mt-3">
 							<li class="nav-item has-child active">
@@ -103,16 +106,30 @@
 								</ul>
 							</li>
 						</ul>
-						<div class="range">
-							<label for="customRange1" class="form-label">Price</label>
-							<input type="range" class="form-range" id="customRange1" min="30" max="500" value="200" />
-							<div class="d-flex justify-content-between align-items-center">
-								<span class="">$30</span>
-								<span class="">$500</span>
+						
+						<h4 class="category-filter__title category-filter__title" style="padding:10px 10px 50px 5px; font-family: inherit;">Цена</h4>
+						<div class="section-filter__body" style="padding-bottom: 35px;">
+							<div class="filters-price__slider" id="range-slider" style="margin-left: 5px;"></div>
+							<div class="filters-price__inputs">
+								<label class="filters-price__label">
+									<span class="filters-price__text">от</span>
+									<input type="text" name="min_price" value="0" class="filters-price__input" id="input-0">
+									<span class="filters-price__text">₽</span>
+								</label>
+								<label class="filters-price__label">
+									<span class="filters-price__text">до</span>
+									<input type="text" name="max_price" value="120" class="filters-price__input" id="input-1">
+									<span class="filters-price__text">₽</span>
+								</label>
 							</div>
 						</div>
-					</div>
-				</div>
+						<div class="filter__buttons">
+
+							<button class="btn">Подбор</button>
+						</div>
+					</form>
+					<button class="btn btn--transparent-gray" style="margin: 15px 0;" onclick="location.href = location.pathname">Сброс</button>
+				</div> -->
 			</div>
 			<div class="col-lg-9 col-md-12">
 				<div class="category-product">

@@ -19,6 +19,7 @@
 	<!-- Custom css link -->
 	<link rel="stylesheet" href="/css/style.css" />
 	<link rel="stylesheet" href="/css/responsive-style.css" />
+	<link rel="stylesheet" href="/css/nouislider.min.css" />
 </head>
 
 <body>
@@ -278,7 +279,7 @@
 
 	<!-- Footer section start Here -->
 	<footer>
-		<section class="footer-section">
+		<section class="footer-section" style="margin-top: 15px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-12 mb-5 md-lg-0">
@@ -659,6 +660,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 	<!-- Custom js link -->
 	<script src="/js/main.js"></script>
+	<script src="/js/nouislider.min.js"></script>
 
 </body>
 

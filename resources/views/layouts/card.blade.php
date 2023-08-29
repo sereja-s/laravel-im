@@ -41,18 +41,7 @@
 		</div>
 	</a>
 
-	<!-- в action в route 2-ым параметром укажем $product, который по умолчанию возмёт поле id (т.е. $product->id можно не указывать) -->
-	<form action="{{ route('basket-add', $product) }}" method="POST">
-
-		<div class="addcart" style="display: flex; justify-content: center; position: absolute; bottom: 77px;
-    left: 15px; z-index: 10">
-			<button type="submit" class="btn-addcart" style="border-radius: 5px;  padding: 5px 10px; background-color: #1288d7; border: none; color: white;">В корзину</button>
-		</div>
-
-		@csrf
-
-	</form>
-	<div class="product-detalis text-center">
+	<div class="product-detalis text-center" style="margin-top: 3px;">
 		<!-- вместо непосредственного получения сатегории, применим матод: category() в модели: Product реализующему связь таблиц и через продукт обратимся уже не к методу, а к одноимённму свойству -->
 		<h4>{{ $product->name }}<br><!-- ( {{ $product->getCategory()->name }} ) -->( {{ $product->category->name }} )</h4>
 
@@ -63,5 +52,16 @@
 		<span class="discount">$63.00</span>
 		<span class="current">{{ $product->price }}руб.</span>
 	</div>
+
+	<!-- в action в route 2-ым параметром укажем $product, который по умолчанию возмёт поле id (т.е. $product->id можно не указывать) -->
+	<form action="{{ route('basket-add', $product) }}" method="POST">
+
+		<div class="addcart" style="display: flex; justify-content: center; padding-top: 5px; z-index: 10">
+			<button type="submit" class="btn-addcart" style="border-radius: 5px;  padding: 5px 10px; background-color: #1288d7; border: none; color: white;">В корзину</button>
+		</div>
+
+		@csrf
+
+	</form>
 
 </div>

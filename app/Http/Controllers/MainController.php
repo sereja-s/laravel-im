@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+	// (+ч.18: Pagination, QueryBuilder, Фильтры)
 	public function index()
 	{
-		return view('index');
+
+
+		$products = Product::get();
+		return view('index', compact('products'));
 	}
 
 	public function categories()
@@ -39,9 +43,14 @@ class MainController extends Controller
 		//$a = 1;
 	}
 
-	public function products()
+	// 
+	public function products(Request $request)
 	{
-		$products = Product::get();
+		//dd($request->all());
+
+		// Добавим пагинацию (+ч.18: Pagination, QueryBuilder, Фильтры): 
+		//$products = Product::get();
+		$products = Product::paginate(12);
 
 		return view('products', compact('products'));
 	}
