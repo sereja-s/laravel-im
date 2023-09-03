@@ -30,9 +30,9 @@ class Order extends Model
 
 	/** 
 	 * Метод вернёт полную стоимость заказа в корзине за все продукты
-	 * (ч.7: Pivot table)
+	 * (ч.20: Scope, Оптимизация запросов к БД)
 	 */
-	public function getFullPrice()
+	public function calculateFullSum()
 	{
 		$sum = 0;
 
@@ -42,6 +42,35 @@ class Order extends Model
 		}
 
 		return $sum;
+	}
+
+	/** 
+	 * Метод получает сумму зказа из сессии 
+	 * (ч.7: Pivot table)
+	 * (+ч.20: Scope, Оптимизация запросов к БД)
+	 */
+	public static function getFullSum()
+	{
+		return session('full_order_sum', 0);
+	}
+
+	/** 
+	 * Метод увеличивает сумму заказа в сессии
+	 * (ч.20: Scope, Оптимизация запросов к БД)
+	 */
+	public static function changeFullSum($changeSum)
+	{
+		$sum = self::getFullSum() + $changeSum;
+		session(['full_order_sum' => $sum]);
+	}
+
+	/** 
+	 * Метод стирает ячейку с суммой заказа после его оформления
+	 * (ч.20: Scope, Оптимизация запросов к БД)
+	 */
+	public static function eraseOrderSum()
+	{
+		session()->forget('full_order_sum');
 	}
 
 	/** 

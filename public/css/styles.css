@@ -10447,3 +10447,7 @@ a.text-dark:hover {
 	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .04)
 }
+
+.btn {
+	max-width: max-content;
+}

@@ -13,6 +13,7 @@
 			<p class="text-center">{{ $category->description }}</p>
 			<p class="text-center">( Количество товаров: {{$category->products->count()}} )</p>
 			<div class="col-lg-3 col-md-12 mb-lg-0 mb-5">
+
 				<!-- Filter section -->
 
 				@include('layouts.filter')
@@ -169,11 +170,7 @@
 
 						@foreach($category->products as $product)
 
-
-
 						@include('layouts.card', compact('product'))
-
-
 
 						@endforeach
 

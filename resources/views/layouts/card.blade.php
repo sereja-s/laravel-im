@@ -1,6 +1,6 @@
 <div class="col-md-4 col-sm-6 col-12 mb-4" style="position: relative;">
 
-	<a href="{{ route('product', [$product->category->code, $product->code]) }}" class="thumbnail">
+	<a href="{{ route('product', [isset($category) ? $category->code : $product->category->code, $product->code]) }}" class="thumbnail">
 
 		<div class="product-img">
 
@@ -49,7 +49,7 @@
 	{{ $category->name }}
 	@endisset -->
 
-		<span class="discount">$63.00</span>
+		<!-- <span class="discount">$63.00</span> -->
 		<span class="current">{{ $product->price }}руб.</span>
 	</div>
 

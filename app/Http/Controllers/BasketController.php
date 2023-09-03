@@ -76,6 +76,10 @@ class BasketController extends Controller
 		// чтобы добавить сообщение об обуспешном добавлении товара получим эдесь этот продукт(товар) по его id
 		$product = Product::find($productId);
 
+		// (+ч.20: Scope, Оптимизация запросов к БД)
+		// Увеличиваем стоимость заказа в сессии
+		Order::changeFullSum($product->price);
+
 		session()->flash('success', 'товар: ' . $product->name . ' добавлен в корзину');
 
 		return redirect()->route('basket');
@@ -116,6 +120,11 @@ class BasketController extends Controller
 		}
 
 		$product = Product::find($productId);
+
+		// (+ч.20: Scope, Оптимизация запросов к БД)
+		// Уменьщаем стоимость заказа в сессии
+		Order::changeFullSum(-$product->price);
+
 		session()->flash('warning', 'товар: ' . $product->name . ' удалён из корзины');
 
 		return redirect()->route('basket');
@@ -179,6 +188,9 @@ class BasketController extends Controller
 
 		// затем его нужно удалить из сессии:
 		//session()->forget('orderId');
+
+		// ч.20: Scope, Оптимизация запросов к БД
+		Order::eraseOrderSum();
 
 		return redirect()->route('index');
 	}

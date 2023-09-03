@@ -42,6 +42,16 @@
 		</tbody>
 	</table>
 
+	<!--  пагинация -->
+	{{ $categories->links('pagination::bootstrap-4') }}
+
+	<style>
+		.pagination {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+
 	<a class="btn btn-success" type="button" href="{{ route('categories.create') }}">Добавить категорию</a>
 </div>
 @endsection

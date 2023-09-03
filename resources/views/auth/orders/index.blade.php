@@ -33,7 +33,7 @@
 				<td>{{ $order->name }}</td>
 				<td>{{ $order->phone }}</td>
 				<td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
-				<td>{{ $order->getFullPrice() }} руб.</td>
+				<td>{{ $order->calculateFullSum() }} руб.</td>
 				<td>
 					<div class="btn-group" role="group">
 
@@ -54,5 +54,16 @@
 			@endforeach
 		</tbody>
 	</table>
+
+	<!--  пагинация -->
+	{{ $orders->links('pagination::bootstrap-4') }}
+
+	<style>
+		.pagination {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+
 </div>
 @endsection

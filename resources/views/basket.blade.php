@@ -20,7 +20,7 @@
 	<div class="container">
 		<div class="row">
 
-			@foreach($order->products as $product)
+			@foreach($order->products()->with('category')->get() as $product)
 
 			<div class="col-md-6 col-sm-12 p-0">
 				<div class="details">
@@ -75,7 +75,7 @@
 				<div class="subtotal-confirm ps-0 ps-md-4">
 					<div class="mb-3">
 						<span>Итого к оплате:</span>
-						<span class="ms-4">{{ $order->getFullPrice() }} руб.</span>
+						<span class="ms-4">{{ $order->getFullSum() }} руб.</span>
 					</div>
 					<div class="subtotal-section mb-5">
 						<ul class="">

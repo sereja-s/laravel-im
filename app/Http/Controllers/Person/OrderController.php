@@ -16,7 +16,8 @@ class OrderController extends Controller
 
 		// нам нужно получить не все заказы, а только те которые принадлежат пользователю
 		// метод: orders() связи с заказами реализован в модели: User.php
-		$orders = Auth::user()->orders()->where('status', 1)->get();
+		//$orders = Auth::user()->orders()->where('status', 1)->get();
+		$orders = Auth::user()->orders()->where('status', 1)->paginate(3);
 
 		return view('auth.orders.index', compact('orders'));
 	}

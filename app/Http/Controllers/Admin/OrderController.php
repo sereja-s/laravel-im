@@ -29,7 +29,8 @@ class OrderController extends Controller
 	 */
 	public function index()
 	{
-		$orders = Order::get()->where('status', 1);
+		//$orders = Order::get()->where('status', 1);
+		$orders = Order::where('status', 1)->paginate(3);
 
 		return view('auth.orders.index', compact('orders'));
 	}

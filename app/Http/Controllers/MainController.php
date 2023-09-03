@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductsFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -11,8 +12,6 @@ class MainController extends Controller
 	// (+ч.18: Pagination, QueryBuilder, Фильтры)
 	public function index()
 	{
-
-
 		$products = Product::get();
 		return view('index', compact('products'));
 	}
@@ -24,34 +23,61 @@ class MainController extends Controller
 		return view('categories', compact('categories'));
 	}
 
-	public function category($code)
+	public function category($code, Category $request)
 	{
 		$category = Category::where('code', $code)->first();
 
 		// для использования в шаблоне: category.blade.php получим все продукты соответствующей категории
 		//$products = Product::where('category_id', $category->id)->get();
 
-		//dd($category);
+		$productsAll = Product::query()->where('category_id', $category->id)->get();
 
-		return view('category', compact('category'/* , 'products' */));
+		return view('category', compact('category', 'productsAll'));
 	}
 
 	public function product($category, $product = null)
 	{
 		return view('product', ['product' => $product]);
-
-		//$a = 1;
 	}
 
-	// 
-	public function products(Request $request)
+
+	public function products(ProductsFilterRequest $request)
 	{
+		// посмотреть все методы класса для указаного объекта
+		//dd(get_class_methods($request));
+
 		//dd($request->all());
+		//$productsQuery = Product::query();
 
-		// Добавим пагинацию (+ч.18: Pagination, QueryBuilder, Фильтры): 
-		//$products = Product::get();
-		$products = Product::paginate(12);
+		// ч.19: Log, Debugbar, Eager Load
+		$productsQuery = Product::with('category');
 
-		return view('products', compact('products'));
+		// Добавим обработку фильтров (+ч.18: Pagination, QueryBuilder, Фильтры): 
+		if ($request->filled('min_price')) {
+
+			$productsQuery->where('price', '>=', $request->min_price);
+		}
+
+		if ($request->filled('max_price')) {
+
+			$productsQuery->where('price', '<=', $request->max_price);
+		}
+
+		foreach (['hit', 'new', 'recommend'] as $field) {
+
+			if ($request->has($field)) {
+
+				$productsQuery->where($field, 1);
+			}
+		}
+
+		$productsAll = Product::get();
+		//$products = Product::paginate(12);
+
+		// Добавим пагинацию, (+ч.18: Pagination, QueryBuilder, Фильтры):
+		// метод: withPath() сохраняет строку запрса с фильтрами в адресе при переходе со страницы на страницу		
+		$products = $productsQuery->paginate(3)->withPath("?" . $request->getQueryString());
+
+		return view('products', compact('products', 'productsAll'));
 	}
 }

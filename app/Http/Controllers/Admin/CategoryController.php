@@ -18,7 +18,8 @@ class CategoryController extends Controller
 	public function index()
 	{
 		//получим категории из БД (ч.12: Resource Controller, REST, Spoofing)
-		$categories = Category::get();
+		//$categories = Category::get();
+		$categories = Category::paginate(5);
 
 		return view('auth.categories.index', compact('categories'));
 	}
