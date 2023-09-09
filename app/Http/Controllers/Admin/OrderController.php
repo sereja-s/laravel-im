@@ -41,6 +41,11 @@ class OrderController extends Controller
 	 */
 	public function show(Order $order)
 	{
-		return view('auth.orders.show', compact('order'));
+		// чтобы получить в заказе продукты скрытые после удаления (с применением трейта Soft Delete) достроим запрос 
+		//(добавляем скобки к св-ву котрому обращаемся) и затем вызываем метод: withTrashed() и затем метод: get()
+		// (+ч.22: Кол-во товара, Soft Delete)
+		$products = $order->products()->withTrashed()->get();
+
+		return view('auth.orders.show', compact('order', 'products'));
 	}
 }

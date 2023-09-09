@@ -29,9 +29,11 @@ class ProductRequest extends FormRequest
 			'name' => 'required|min:3|max:255|',
 			'description' => 'required|min:5',
 			'price' => 'required|numeric|min:1',
+			'count' => 'required|numeric|min:0',
 		];
 
-		// если товар имеет id в маршруте значит он обновляется(редактируется) и уникальность поля проверять не надо
+		// если товар имеет id в маршруте, значит он обновляется(редактируется) и уникальность поля проверять не надо
+		// (+ч.14: Валидация, FormRequest)
 		if ($this->route()->named('products.update')) {
 
 			$rules['code'] .= ',' . $this->route()->parameter('product')->id;

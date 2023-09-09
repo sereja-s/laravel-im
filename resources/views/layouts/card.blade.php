@@ -57,7 +57,17 @@
 	<form action="{{ route('basket-add', $product) }}" method="POST">
 
 		<div class="addcart" style="display: flex; justify-content: center; padding-top: 5px; z-index: 10">
+
+			@if($product->isAvailable())
+
 			<button type="submit" class="btn-addcart" style="border-radius: 5px;  padding: 5px 10px; background-color: #1288d7; border: none; color: white;">В корзину</button>
+
+			@else
+
+			<p style="color:coral">товара нет в наличии</p>
+
+			@endif
+
 		</div>
 
 		@csrf

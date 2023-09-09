@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 	use HasFactory;
+
+	protected $fillable = ['user_id'];
+
 	/** 
 	 * Метод реализует связь заказов с продуктами
 	 */
@@ -36,7 +39,8 @@ class Order extends Model
 	{
 		$sum = 0;
 
-		foreach ($this->products as $prodct) {
+		// (+ч.22: Кол-во товара, Soft Delete)
+		foreach ($this->products()->withTrashed()->get() as $prodct) {
 
 			$sum += $prodct->getPriceForCount();
 		}
@@ -88,10 +92,13 @@ class Order extends Model
 
 			// сохраним заказ с внесёнными изменениями:
 			$this->save();
+
 			// затем его нужно удалить из сессии:
 			session()->forget('orderId');
+
 			return true;
 		} else {
+
 			return false;
 		}
 	}

@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
 	use HasFactory;
+	use SoftDeletes;
 
 	// добавляем поля что бы могли их редактировать
 	protected $fillable = [
 		'name', 'code', 'price', 'category_id', 'description', 'image', 'hit', 'new', 'recommend', 'count', 'name_en',
-		'description_en'
+		'description_en', 'count',
 	];
 
 	public function getCategory()
@@ -54,6 +56,7 @@ class Product extends Model
 		return $this->price;
 	}
 
+
 	// ч.17: Checkbox, Mutator 
 	/** 
 	 * Метод-Mutator вызывается перед сохранением атрибута товара: new
@@ -91,5 +94,15 @@ class Product extends Model
 	public function isRecommend()
 	{
 		return $this->recommend === 1;
+	}
+
+	/** 
+	 * Метод покажет, что товар доступен для заказа
+	 * (ч.22: Кол-во товара, Soft Delete)
+	 */
+	public function isAvailable()
+	{
+		// указали что товар должен быть не удалён(скрыт) и его кол-во больше 0
+		return !$this->trashed() && $this->count > 0;
 	}
 }

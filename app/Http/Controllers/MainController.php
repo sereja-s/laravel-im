@@ -35,9 +35,14 @@ class MainController extends Controller
 		return view('category', compact('category', 'productsAll'));
 	}
 
-	public function product($category, $product = null)
+	public function product($category, $productCode)
 	{
-		return view('product', ['product' => $product]);
+		// (+ч.22: Кол-во товара, Soft Delete)
+		// добавим вызов метода показывать вместе с удалёнными
+		// (+ч.24: Отправка Email)
+		$product = Product::withTrashed()->where('code', $productCode)->firstOrFail();
+
+		return view('product', compact('product'));
 	}
 
 

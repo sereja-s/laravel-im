@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $product)
+@section('title', $product->name)
 
 @section('content')
 
@@ -15,8 +15,8 @@
 						<div class="large-image swiper">
 							<div class="wrap swiper-wrapper">
 								<div class="swiper-slide item">
-									<a href="/images/product_01.jpg" data-fslightbox="first-lightbox">
-										<img src="/images/product_01.jpg" alt="" />
+									<a href="{{ Storage::url($product->image) }}" data-fslightbox="first-lightbox">
+										<img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" />
 									</a>
 								</div>
 								<div class="swiper-slide item">
@@ -57,7 +57,7 @@
 							<div class="wrap swiper-wrapper">
 								<div class="swiper-slide item">
 									<div class="thumb">
-										<img src="/images/product_01.jpg" alt="" />
+										<img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" />
 									</div>
 								</div>
 								<div class="swiper-slide item">
@@ -95,12 +95,12 @@
 			<!-- Product Details -->
 			<div class="col-md-6 col-12">
 				<div class="summary ps-md-4 ps-0">
-					<h3>The Sweater in Tosca</h3>
+					<h3>{{ $product->name }}</h3>
 					<div class="d-flex justify-content-between price-review mt-4">
 						<div class="d-flex">
-							<span class="price">$45</span>
+							<span class="price">{{ $product->price }} руб.</span>
 							<div class="discount">
-								<div>$62.00</div>
+								<div style="text-decoration: none;">цена со скидкой</div>
 								<div>-25%</div>
 							</div>
 						</div>
@@ -155,11 +155,21 @@
 						<form action="{{ route('basket-add', $product) }}" method="POST">
 
 							<div class="addcart" style="padding-bottom: 15px;">
+
+								@if($product->isAvailable())
+
 								<button type="submit" class="btn-addcart">В корзину</button>
+
+								@else
+
+								<p style="color:coral">товара нет в наличии</p>
+
+								@endif
+
 							</div>
-							<div class="buynow">
+							<!-- <div class="buynow">
 								<button class="btn-byenow">Buy Now</button>
-							</div>
+							</div> -->
 							@csrf
 
 						</form>
@@ -210,7 +220,7 @@
 	<div class="container">
 		<!-- <div class="item"> -->
 		<ul class="tab-navigation">
-			<li class="active"><a href="#0" data-tab="tab1">Product details</a></li>
+			<li class="active"><a href="#0" data-tab="tab1">Описание</a></li>
 			<li><a href="#0" data-tab="tab2">Custom</a></li>
 			<li>
 				<a href="#0" class="position-relative" data-tab="tab3">
@@ -228,7 +238,7 @@
 					<div class="row">
 						<div class="mb-5">
 							<h4>The Sweater is Tosca</h4>
-							<p class="lh-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime omnis quibusdam voluptatum eligendi maiores modi id repellat culpa quis, animi fugiat? Et eligendi ex asperiores.</p>
+							<p class="lh-lg">{{ $product->description }}</p>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, iusto.</p>
 						</div>
 
