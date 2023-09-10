@@ -145,6 +145,9 @@
 						<span><strong>201</strong> in stock</span>
 						<span class="ps-3"> <i class="ri-checkbox-circle-line"></i></span>
 					</div>
+
+					@if($product->isAvailable())
+
 					<div class="quentity mt-4 mb-4">
 						<div class="item">
 							<button class="decrease">-</button>
@@ -152,27 +155,46 @@
 							<button class="increase">+</button>
 						</div>
 
-						<form action="{{ route('basket-add', $product) }}" method="POST">
+						@endif
 
-							<div class="addcart" style="padding-bottom: 15px;">
+						<div class="addcart" style="padding-bottom: 15px;">
 
-								@if($product->isAvailable())
+							@if($product->isAvailable())
+
+							<form action="{{ route('basket-add', $product) }}" method="POST">
 
 								<button type="submit" class="btn-addcart">В корзину</button>
 
-								@else
-
-								<p style="color:coral">товара нет в наличии</p>
-
-								@endif
-
-							</div>
-							<!-- <div class="buynow">
+								<!-- <div class="buynow">
 								<button class="btn-byenow">Buy Now</button>
 							</div> -->
-							@csrf
+								@csrf
 
-						</form>
+							</form>
+
+							@else
+
+							<span style="color:coral">товара нет в наличии</span>
+							<h4>Сообщить мне когда товар появится в наличии</h4>
+
+
+							<div class="warning" style="color: red; font-weight:700">
+								@if($errors->get('email'))
+								{!! $errors->get('email')[0] !!}
+								@endif
+							</div>
+
+
+
+							<form action="{{ route('subscription', $product) }}" method="post">
+								@csrf
+								<input type="text" name="email" placeholder="ваша эл.почта">
+								<button style="border-radius: 5px;  padding: 3px 5px; background-color: #1288d7; border: none; color: white; font-size: 14px" type="submit">Отправить</button>
+							</form>
+
+							@endif
+
+						</div>
 
 					</div>
 					<div class="shipping">
