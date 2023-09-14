@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductsFilterRequest;
 use App\Http\Requests\SubscriptionRequest;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Subscription;
 use GrahamCampbell\ResultType\Success;
@@ -12,18 +13,22 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-	// (+ч.18: Pagination, QueryBuilder, Фильтры)
 	public function index()
 	{
-		$products = Product::get();
-		return view('index', compact('products'));
+		// (-ч.31: ViewComposer, Collection (map, flatten, take, mapToGroups))
+		//$categories = Category::get();
+
+
+
+		return view('index');
 	}
 
 	public function categories()
 	{
-		$categories = Category::get();
+		// (-ч.31: ViewComposer, Collection (map, flatten, take, mapToGroups))
+		//$categories = Category::get();
 
-		return view('categories', compact('categories'));
+		return view('categories');
 	}
 
 	public function category($code, Category $request)

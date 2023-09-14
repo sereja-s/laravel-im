@@ -65,22 +65,28 @@
 <section class="product-guide">
 	<div class="container">
 		<div class="row">
-			<h2 class="text-center mb-5">Product Guide</h2>
+			<h2 class="text-center mb-5">Самые популярные товары</h2>
 		</div>
 
 		<div class="wrapper">
+
+			@foreach($bestProducts as $bestProduct)
+
 			<div class="item">
-				<div class="guide-content">
+				<a href="{{ route('product', [$bestProduct->category->code, $bestProduct->code]) }}" class="guide-content">
 					<div class="guide-img">
-						<img src="/images/guide_01.png" class="img-fluid" alt="" />
+						<img src="{{ Storage::url($bestProduct->image) }}" class="img-fluid" alt="{{ $bestProduct->name }}" />
 					</div>
 					<div class="guide-text text-center">
-						<div class="guide-title">The Blue Ocean Mx</div>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi.</p>
+						<div class="guide-title">{{ $bestProduct->name }}</div>
+						<p>{{ $bestProduct->description }}</p>
 					</div>
-				</div>
+				</a>
 			</div>
-			<div class="item">
+
+			@endforeach
+
+			<!-- <div class="item">
 				<div class="guide-content">
 					<div class="guide-img">
 						<img src="/images/guide_02.png" class="img-fluid" alt="" />
@@ -101,7 +107,7 @@
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi.</p>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>

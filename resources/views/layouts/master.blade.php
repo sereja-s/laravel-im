@@ -72,7 +72,7 @@
 					<ul class="d-flex gap-4">
 						<li class="nav-item"><a href="{{ route('index') }}" class="nav-link">Home</a></li>
 						<li class="nav-item mega">
-							<a href="{{ route('products') }}" class="nav-link">Products
+							<a href="{{ route('products') }}" class="nav-link">Все товары
 								<i class="ri-arrow-down-s-line rotate"></i>
 							</a>
 							<div class="mega-content">
@@ -207,15 +207,18 @@
 					</ul>
 					<ul class="d-flex gap-4">
 						<li class="nav-item position-relative sub">
-							<a href="{{ route('categories') }}" class="nav-link">Specials
+							<a href="{{ route('categories') }}" class="nav-link">Категории
 								<i class="ri-arrow-down-s-line rotate"></i>
 							</a>
 							<div class="sub-menu">
 								<ul class="sub-link">
-									<li class="nav-item"><a href="#0" class="nav-link">Dolce & Gabbana</a></li>
-									<li class="nav-item"><a href="#0" class="nav-link">Louis vuitton</a></li>
-									<li class="nav-item"><a href="#0" class="nav-link">Versace</a></li>
-									<li class="nav-item"><a href="#0" class="nav-link">Dior</a></li>
+
+									@foreach($categories as $category)
+
+									<li class="nav-item" style="line-height: 20px; padding-bottom: 7px"><a href="{{ route('category', $category->code) }}" class="nav-link">{{ $category->name }}</a></li>
+
+									@endforeach
+
 								</ul>
 							</div>
 						</li>
